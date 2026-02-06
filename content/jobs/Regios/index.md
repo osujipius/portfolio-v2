@@ -1,7 +1,7 @@
 ---
 date: '2025-04-01'
 title: 'Software Engineer'
-company: 'Regios Tech, Inc'
+company: 'Regios Tech'
 location: 'Remote, United States'
 range: 'April 2025 - Present'
 url: 'https://regiostech.com/'
