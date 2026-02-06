@@ -1,7 +1,7 @@
 ---
 date: '2025-06-01'
 title: 'Software Engineer'
-company: 'Wikimedia Foundation (Outreachy)'
+company: 'Wikimedia'
 location: 'Remote, United States'
 range: 'Jun 2025 - Aug 2025'
 url: 'https://wikimediafoundation.org/'

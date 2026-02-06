@@ -1,10 +1,10 @@
 ---
 date: '2025-04-01'
 title: 'Software Engineer'
-company: 'Regios Technologies, Inc'
+company: 'Regios Tech, Inc'
 location: 'Remote, United States'
 range: 'April 2025 - Present'
-url: 'https://regios.com/'
+url: 'https://regiostech.com/'
 ---
 
 - Built a product page theme integration that allows discounts created in the app to appear seamlessly on Shopify storefronts.
