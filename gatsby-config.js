@@ -5,9 +5,11 @@ module.exports = {
     title: 'Pius Osuji',
     description:
       'Pius Osuji is a software engineer specializing in building different software solutions primarily for the web.',
-    siteUrl: 'https://osuji.xyz', // No trailing slash allowed!
+    siteUrl: 'https://piusosuji.dev', // No trailing slash allowed!
     image: '/og.png', // Path to your image you placed in the 'static' folder
     twitterUsername: '@pius_osuji',
+    // Paste the content value from Google Search Console → HTML tag verification
+    googleSiteVerification: process.env.GOOGLE_SITE_VERIFICATION || '',
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -15,8 +17,22 @@ module.exports = {
     `gatsby-plugin-image`,
     `gatsby-plugin-sharp`,
     `gatsby-transformer-sharp`,
-    `gatsby-plugin-sitemap`,
-    `gatsby-plugin-robots-txt`,
+    {
+      resolve: `gatsby-plugin-sitemap`,
+      options: {
+        // gatsby-plugin-sitemap v4 defaults to /sitemap/, but writes child
+        // locs as /sitemap-0.xml (root). Output at / so paths match.
+        output: `/`,
+      },
+    },
+    {
+      resolve: `gatsby-plugin-robots-txt`,
+      options: {
+        host: 'https://piusosuji.dev',
+        sitemap: 'https://piusosuji.dev/sitemap-index.xml',
+        policy: [{ userAgent: '*', allow: '/' }],
+      },
+    },
     {
       resolve: `gatsby-plugin-manifest`,
       options: {

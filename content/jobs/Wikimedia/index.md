@@ -1,6 +1,6 @@
 ---
 date: '2025-06-01'
-title: 'Software Engineer'
+title: 'Software Engineer Intern'
 company: 'Wikimedia'
 location: 'Remote, United States'
 range: 'Jun 2025 - Aug 2025'
