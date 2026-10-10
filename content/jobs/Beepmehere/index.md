@@ -5,6 +5,7 @@ company: 'Beepmehere'
 location: 'Remote, United States'
 range: 'April 2024 - Jun 2024'
 url: 'https://beepmehere.com/'
+tags: ['Zoom API', 'Google Calendar', 'Booking flow', 'Real-time chat']
 ---
 
 - Implemented and handled the integration of zoom and google APIs to handle connection of creator calendars and video call bookings.

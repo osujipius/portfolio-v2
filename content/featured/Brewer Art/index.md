@@ -1,5 +1,5 @@
 ---
-date: '2'
+date: '4'
 title: 'Brewer Art Restaurant'
 cover: './brewer.png'
 external: 'https://brewer-art.netlify.app/'

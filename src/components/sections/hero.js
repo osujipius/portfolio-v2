@@ -1,8 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import React from 'react';
 import styled from 'styled-components';
-import { navDelay, loaderDelay } from '@utils';
-import { usePrefersReducedMotion } from '@hooks';
 // import { email } from '@config';
 
 const StyledHeroSection = styled.section`
@@ -12,8 +9,11 @@ const StyledHeroSection = styled.section`
   min-height: 100vh;
   padding: 0;
 
-  @media (max-width: 480px) and (min-height: 700px) {
-    padding-bottom: 10vh;
+  @media (max-width: 768px) {
+    min-height: unset;
+    justify-content: flex-start;
+    padding-top: calc(var(--nav-height) + 40px);
+    padding-bottom: 5vh;
   }
 
   h1 {
@@ -46,27 +46,14 @@ const StyledHeroSection = styled.section`
 `;
 
 const Hero = () => {
-  const [isMounted, setIsMounted] = useState(false);
-  const prefersReducedMotion = usePrefersReducedMotion();
-
-  useEffect(() => {
-    if (prefersReducedMotion) {
-      return;
-    }
-
-    const timeout = setTimeout(() => setIsMounted(true), navDelay);
-    return () => clearTimeout(timeout);
-  }, []);
-
   const one = <h1>Hi, my name is</h1>;
   const two = <h2 className="big-heading">Pius Osuji.</h2>;
   const three = <h3 className="big-heading">I build web apps with superpowers.</h3>;
   const four = (
     <>
       <p>
-        I’m a proficient software engineer with a strong focus on frontend development, specializing
-        in creating dynamic, user-friendly, and scalable web solutions. I excel at transforming
-        complex ideas into intuitive, visually appealing interfaces that enhance user experiences.
+        I spec, build and scale software across the stack. These days, that involves teaming up with
+        AI agents to shape frontend experiences, develop backend services and automate workflows.
       </p>
     </>
   );
@@ -80,22 +67,9 @@ const Hero = () => {
 
   return (
     <StyledHeroSection>
-      {prefersReducedMotion ? (
-        <>
-          {items.map((item, i) => (
-            <div key={i}>{item}</div>
-          ))}
-        </>
-      ) : (
-        <TransitionGroup component={null}>
-          {isMounted &&
-            items.map((item, i) => (
-              <CSSTransition key={i} classNames="fadeup" timeout={loaderDelay}>
-                <div style={{ transitionDelay: `${i + 1}00ms` }}>{item}</div>
-              </CSSTransition>
-            ))}
-        </TransitionGroup>
-      )}
+      {items.map((item, i) => (
+        <div key={i}>{item}</div>
+      ))}
     </StyledHeroSection>
   );
 };

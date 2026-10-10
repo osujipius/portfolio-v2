@@ -1,5 +1,5 @@
 ---
-date: '4'
+date: '6'
 title: 'Myxellia.io'
 cover: './myxellia.png'
 external: 'https://www.myxellia.io/'

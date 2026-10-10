@@ -1,11 +1,8 @@
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
 import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 import styled from 'styled-components';
-import sr from '@utils/sr';
-import { srConfig } from '@config';
 import { Icon } from '@components/icons';
-import { usePrefersReducedMotion } from '@hooks';
 
 const StyledProjectsGrid = styled.ul`
   ${({ theme }) => theme.mixins.resetList};
@@ -179,6 +176,12 @@ const StyledProject = styled.li`
       color: var(--white);
       font-weight: normal;
     }
+
+    ul {
+      ${({ theme }) => theme.mixins.fancyList};
+      margin: 15px 0 0;
+      font-size: var(--fz-md);
+    }
   }
 
   .project-tech-list {
@@ -313,6 +316,7 @@ const Featured = () => {
               }
               tech
               github
+              gitlab
               external
             }
             html
@@ -323,40 +327,26 @@ const Featured = () => {
   `);
 
   const featuredProjects = data.featured.edges.filter(({ node }) => node);
-  const revealTitle = useRef(null);
-  const revealProjects = useRef([]);
-  const prefersReducedMotion = usePrefersReducedMotion();
-
-  useEffect(() => {
-    if (prefersReducedMotion) {
-      return;
-    }
-
-    sr.reveal(revealTitle.current, srConfig());
-    revealProjects.current.forEach((ref, i) => sr.reveal(ref, srConfig(i * 100)));
-  }, []);
 
   return (
     <section id="projects">
-      <h2 className="numbered-heading" ref={revealTitle}>
-        Some Things I’ve Built
-      </h2>
+      <h2 className="numbered-heading">Some Things I’ve Built</h2>
 
       <StyledProjectsGrid>
         {featuredProjects &&
           featuredProjects.map(({ node }, i) => {
             const { frontmatter, html } = node;
-            const { external, title, tech, github, cover } = frontmatter;
+            const { external, title, tech, github, gitlab, cover } = frontmatter;
             const image = getImage(cover);
 
             return (
-              <StyledProject key={i} ref={el => (revealProjects.current[i] = el)}>
+              <StyledProject key={i}>
                 <div className="project-content">
                   <div>
                     <p className="project-overline">Featured Project</p>
 
                     <h3 className="project-title">
-                      <a href={external}>{title}</a>
+                      {external ? <a href={external}>{title}</a> : title}
                     </h3>
 
                     <div
@@ -364,7 +354,7 @@ const Featured = () => {
                       dangerouslySetInnerHTML={{ __html: html }}
                     />
 
-                    {tech.length && (
+                    {tech && tech.length && (
                       <ul className="project-tech-list">
                         {tech.map((tech, i) => (
                           <li key={i}>{tech}</li>
@@ -378,6 +368,11 @@ const Featured = () => {
                           <Icon name="GitHub" />
                         </a>
                       )}
+                      {gitlab && (
+                        <a href={gitlab} aria-label="GitLab Link">
+                          <Icon name="GitLab" />
+                        </a>
+                      )}
                       {external && (
                         <a href={external} aria-label="External Link" className="external">
                           <Icon name="External" />
@@ -387,11 +382,13 @@ const Featured = () => {
                   </div>
                 </div>
 
-                <div className="project-image">
-                  <a href={external ? external : github ? github : '#'}>
-                    <GatsbyImage image={image} alt={title} className="img" />
-                  </a>
-                </div>
+                {image && (
+                  <div className="project-image">
+                    <a href={external ? external : github ? github : '#'}>
+                      <GatsbyImage image={image} alt={title} className="img" />
+                    </a>
+                  </div>
+                )}
               </StyledProject>
             );
           })}

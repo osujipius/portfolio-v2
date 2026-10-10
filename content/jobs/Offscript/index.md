@@ -5,6 +5,7 @@ company: 'Off script'
 location: 'Remote, Sweden'
 range: 'Aug 2022 - Jan 2024'
 url: 'https://www.offscript.io/'
+tags: ['Algolia', 'OpenAI', 'Stripe', 'Apple Pay']
 ---
 
 - Engineered and optimized search functionality using Algolia, resulting in faster and more accurate search results for improved system performance and user satisfaction.

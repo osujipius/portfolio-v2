@@ -5,6 +5,7 @@ company: 'Squaremetre'
 location: 'Remote, United States'
 range: 'Aug 2024 - Aug 2025'
 url: 'https://squaremetre.com/'
+tags: ['Real estate', 'Paystack', 'Admin dashboard', 'Notifications']
 ---
 
 - Led the end-to-end development of a real estate platform with features such as listing and purchasing of properties, deposit and withdrawal of funds using Paystack, and the ability to see real time projection and performance metrics.

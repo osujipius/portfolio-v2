@@ -1,13 +1,10 @@
-import React, { useRef, useEffect } from 'react';
+import React from 'react';
 import { graphql } from 'gatsby';
 import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
 import styled from 'styled-components';
-import { srConfig } from '@config';
-import sr from '@utils/sr';
 import { Layout } from '@components';
 import { Icon } from '@components/icons';
-import { usePrefersReducedMotion } from '@hooks';
 
 const StyledTableContainer = styled.div`
   margin: 100px -20px;
@@ -131,32 +128,18 @@ const StyledTableContainer = styled.div`
 
 const ArchivePage = ({ location, data }) => {
   const projects = data.allMarkdownRemark.edges;
-  const revealTitle = useRef(null);
-  const revealTable = useRef(null);
-  const revealProjects = useRef([]);
-  const prefersReducedMotion = usePrefersReducedMotion();
-
-  useEffect(() => {
-    if (prefersReducedMotion) {
-      return;
-    }
-
-    sr.reveal(revealTitle.current, srConfig());
-    sr.reveal(revealTable.current, srConfig(200, 0));
-    revealProjects.current.forEach((ref, i) => sr.reveal(ref, srConfig(i * 10)));
-  }, []);
 
   return (
     <Layout location={location}>
       <Helmet title="Archive" />
 
       <main>
-        <header ref={revealTitle}>
+        <header>
           <h1 className="big-heading">Archive</h1>
           <p className="subtitle">A big list of things I’ve worked on</p>
         </header>
 
-        <StyledTableContainer ref={revealTable}>
+        <StyledTableContainer>
           <table>
             <thead>
               <tr>
@@ -181,7 +164,7 @@ const ArchivePage = ({ location, data }) => {
                     company,
                   } = node.frontmatter;
                   return (
-                    <tr key={i} ref={el => (revealProjects.current[i] = el)}>
+                    <tr key={i}>
                       <td className="overline year">{`${new Date(date).getFullYear()}`}</td>
 
                       <td className="title">{title}</td>
