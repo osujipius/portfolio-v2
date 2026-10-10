@@ -1,2 +1,2 @@
 # This is my portfolio site
-# 🌐 Live @ https://www.osuji.xyz
+# 🌐 Live @ https://www.piusosuji.dev/
